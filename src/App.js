@@ -9,30 +9,36 @@ import Nav from './Nav';
 import Footer from "./Footer";
 import "./App.css";
 import "./Nav.css";
+import Buildpage from "./Buildpage";
 
 
 function App() {
   return (
-    <div className="app">
-      <Router>
 
-        <Nav />
-        <div className="container">
+    <Router>
+
+      <Nav />
 
 
-        {/* A <Switch> looks through its children <Route>s and
+
+      {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
-        <Switch>
+      <Switch>
 
-          <Route exact path="/">
+        <Route exact path="/">
 
-            <Home />
-          </Route>
-        </Switch>
-        </div>
-        <Footer />
-      </Router>
-    </div>
+          <Home />
+        </Route>
+        <Route exact path="/create">
+
+          <Buildpage />
+        </Route>
+      </Switch>
+
+      <Footer />
+    </Router>
+
+
   );
 }
 
