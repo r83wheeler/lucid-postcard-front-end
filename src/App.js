@@ -10,6 +10,8 @@ import Footer from "./Footer";
 import "./App.css";
 import "./Nav.css";
 import Buildpage from "./Buildpage";
+import Tutorial from "./Tutorial";
+import AboutUs from "./AboutUs";
 
 
 function App() {
@@ -26,17 +28,20 @@ function App() {
       <Switch>
 
         <Route exact path="/">
-
           <Home />
         </Route>
-        <Route exact path="/create">
-
+        <Route  path="/create">
           <Buildpage />
         </Route>
+        <Route  path="/aboutUs">
+          <AboutUs />
+        </Route>
+        <Route path="/tutorial">
+          <Tutorial />
+        </Route>
       </Switch>
-
       <Footer />
-    </Router>
+    </Router >
 
 
   );

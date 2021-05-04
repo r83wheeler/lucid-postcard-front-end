@@ -1,24 +1,25 @@
 
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Footer() {
     return (
-        
-<footer class="footer mt-auto py-3 bg-light lead">
-  <div class="container">
-   <div class="row mx-auto">
-       <div class="col-4">
-       <button class="btn btn-secondary btn-lg" type="submit">About Us</button>
-       </div>
-       <div class="col-4">
-       <button class="btn btn-secondary btn-lg" type="submit">Products</button>
-       </div>
-       <div class="col-4">
-       <button class="btn btn-secondary btn-lg" type="submit">Tutorial</button>
-       </div>
-   </div>
-  </div>
-{/* <div class="card text-center">
+
+        <footer className="footer mt-auto py-3 bg-light lead">
+            <div className="container">
+                <div className="row mx-auto">
+                    <div className="col-4">
+                        <Link to="/aboutUs" className="btn btn-secondary btn-lg" >About Us</Link>
+                    </div>
+                    <div className="col-4">
+                        <Link to="/" className="btn btn-secondary btn-lg" >Home</Link>
+                    </div>
+                    <div className="col-4">
+                        <Link to="/tutorial" className="btn btn-secondary btn-lg" >Tutorial</Link>
+                    </div>
+                </div>
+            </div>
+            {/* <div class="card text-center">
     <div class="card-header">
         Featured
     </div>
@@ -31,7 +32,7 @@ export default function Footer() {
         2 days ago
     </div>
 </div> */}
-</footer>
+        </footer>
 
 
     )
