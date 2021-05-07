@@ -4,7 +4,10 @@ import { useHistory } from 'react-router-dom';
 
 
 export default function SignIn(props) {
-    const [formData, setFormData] = useState({})
+    const [formData, setFormData] = useState({
+        'password': '',
+        'username': ''
+    })
     const history = useHistory()
 
     const handleChange = (e) => {
@@ -21,7 +24,11 @@ export default function SignIn(props) {
         if (formData.password.length < 8) {
             console.log('not good enough, bud')
         } else {
-            const apiURL = 'https://lucid_postcard-r83wheeler94967.codeanyapp.com/api/register'
+            formData.client_id = 2;
+            formData.client_secret='bGRXTBOpNGzATK6isiPMbpfkehXIUUzfJdv08s91';
+            formData.grant_type='password';
+            formData.scope='';
+            const apiURL = 'https://lucid_postcard-r83wheeler94967.codeanyapp.com/oauth/token'
             axios.post(apiURL, formData)
                 .then(response => {
                     console.log(response)
@@ -49,6 +56,8 @@ export default function SignIn(props) {
                     </label>
 
                     <input 
+                    name='username'
+                    onChange={handleChange}
                     type="email" 
                     className="form-control" 
                     id="inputEmail4">
@@ -62,6 +71,8 @@ export default function SignIn(props) {
                     </label>
 
                     <input 
+                    name='password'
+                    onChange={handleChange}
                     type="password" 
                     className="form-control" 
                     id="inputPassword4">
