@@ -10,6 +10,10 @@ import Footer from "./Footer";
 import "./App.css";
 import "./Nav.css";
 import Buildpage from "./Buildpage";
+import Tutorial from "./Tutorial";
+import AboutUs from "./AboutUs";
+import Auth from './Auth';
+import SignIn from "./SignIn";
 
 
 function App() {
@@ -25,18 +29,33 @@ function App() {
             renders the first one that matches the current URL. */}
       <Switch>
 
-        <Route exact path="/">
-
-          <Home />
+        <Route path='/register'>
+          <Auth
+            register
+          />
         </Route>
-        <Route exact path="/create">
+        <Route path='/signin'>
+          <SignIn
+            register
+          />
+        </Route>
 
+        <Route path="/create">
           <Buildpage />
         </Route>
+        <Route path="/about">
+          <AboutUs />
+        </Route>
+        <Route path="/tutorial">
+          <Tutorial />
+        </Route>
+        <Route exact path={['*', '/home', '/']}>
+          <Home />
+        </Route>
       </Switch>
-
       <Footer />
-    </Router>
+
+    </Router >
 
 
   );
