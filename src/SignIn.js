@@ -25,7 +25,7 @@ export default function SignIn(props) {
             console.log('not good enough, bud')
         } else {
             formData.client_id = 2;
-            formData.client_secret='bGRXTBOpNGzATK6isiPMbpfkehXIUUzfJdv08s91';
+            formData.client_secret='2ZHEdyWF1BbcywHJAQlcsMTppQ8gdVZyIx6i2yVY';
             formData.grant_type='password';
             formData.scope='';
             const apiURL = 'https://lucid_postcard-r83wheeler94967.codeanyapp.com/oauth/token'

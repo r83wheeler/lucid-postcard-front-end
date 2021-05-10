@@ -1,9 +1,35 @@
-import React from 'react';
-import {Link} from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Link } from "react-router-dom";
 import front from './images/Detroit338x253.jpg';
 import back from './images/backOfPostcard.jpg';
 
 export default function Home() {
+    const [postcards, setPostcards] = useState([]);
+    useEffect(() => {
+        const apiURL = 'https://lucid_postcard-r83wheeler94967.codeanyapp.com/api/postcards/all'
+        axios.get(apiURL)
+            .then(response => {
+                console.log(response)
+                setPostcards(response.data)
+                //save token
+                //user:story push to Dashboard
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }, [])
+
+    const mappedPostcards = postcards.map((postcard, index) => {
+        return (
+            <div key={index}>
+                {postcard.label}
+
+            </div>
+        )
+    })
+    console.log(postcards);
+
     return (
 
 
@@ -22,6 +48,9 @@ export default function Home() {
                             <Link to="/create" className="btn btn-secondary btn-lg">Build a Postcard</Link>
                         </div>
                     </div>
+                </div>
+                <div className="postcards">
+                    {mappedPostcards}
                 </div>
             </div>
         </div>
