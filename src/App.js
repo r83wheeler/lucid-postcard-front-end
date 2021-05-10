@@ -43,7 +43,7 @@ function App() {
         <Route path="/create">
           <Buildpage />
         </Route>
-        <Route path="/about">
+        <Route path="/aboutUs">
           <AboutUs />
         </Route>
         <Route path="/tutorial">
