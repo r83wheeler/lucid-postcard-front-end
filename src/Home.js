@@ -50,7 +50,7 @@ export default function Home() {
                     </div>
                 </div>
                 <div className="postcards">
-                    {mappedPostcards}
+                    {}
                 </div>
             </div>
         </div>

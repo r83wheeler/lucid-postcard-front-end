@@ -5,7 +5,8 @@ import { useHistory } from 'react-router-dom';
 
 export default function Auth(props) {
     const [formData, setFormData] = useState({})
-    const history = useHistory()
+    const history = useHistory();
+    const [token, setToken] = useState("");
 
     const handleChange = (e) => {
         setFormData(previousState => (
@@ -25,6 +26,8 @@ export default function Auth(props) {
             axios.post(apiURL, formData)
                 .then(response => {
                     console.log(response)
+                    setToken(response.data.token)
+                    props.setToken(response.data.token)
                     history.push('/home')
                     //save token
                     //user:story push to Dashboard
