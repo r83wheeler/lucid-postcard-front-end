@@ -1,9 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
-import picture from "./images/insertImage.jpg";
 import address from "./images/address.jpg";
+import postcard1 from "./images/beachFamily.jpg";
+import postcard2 from "./images/skydive.jpg";
+import postcard3 from "./images/seychelles.jpg"
 import axios from 'axios';
 import { Route } from 'react-router';
+import { useHistory } from 'react-router-dom';
+import "./Buildpage.css";
 
 const Section = styled.section`
     width: 100%;
@@ -32,8 +36,8 @@ const ColumnLeft = styled.div`
     order: ${(reverse) => (reverse ? '2' : '1')};
 
     img {
-        width: 60%;
-        height: 50%;
+        width: 40%;
+        height: 20%;
         object-fit: cover;
 
         @media screen and (max-width: 768px){
@@ -61,7 +65,8 @@ const ColumnRight = styled.div`
 
 
 
-const Buildpage = () => {
+const Buildpage = (props) => {
+    const history = useHistory()
     // save the essage
     // save the address
     // upload the image
@@ -73,7 +78,6 @@ const Buildpage = () => {
     const [city, setCity] = useState("");
     const [state, setState] = useState("");
     const [zip, setZip] = useState("");
-    const token = "";
     const apiURL = "https://lucid_postcard-r83wheeler94967.codeanyapp.com";
     const route = "/api/postcards/create";
 
@@ -93,8 +97,8 @@ const Buildpage = () => {
         let headers = {
             "Accept":"application/json",
             "Access-Control-Allow-Origin":"*",
-            "Content-Type":"application/json; charset=utf-8",
-            "Authorization":`Bearer ${token}`
+            "Content-Type":"application/json",
+            "Authorization":`Bearer ${props.token}`
         };
         let method = "post";
 
@@ -106,8 +110,11 @@ const Buildpage = () => {
         })
         .then(response => function (response){
             alert("You created a Post Card");
+            history.push("/home");
+            
         })
         .catch(error =>  {return error});
+
     };
     return (
         <Section>
@@ -115,10 +122,24 @@ const Buildpage = () => {
 
                 <ColumnLeft>
 
-                    <img src={picture} alt="insertImage" />
-                    <div class="mb-3">
-                        <label for="postcardImage" class="form-label">Choose Image</label>
-                        <input class="form-control" type="file" id="postcardImage" name="postcardImage" onChange={(e) => setPostcardImage(e.target.value)}/>
+                    <div className="imageContainer mb-2">
+                        <label for="postcardImage" className="form-label">Select Image</label>
+                        <br />
+                        <input type="radio" id="postcard1" name="postcardImage" value="1" onChange={(e) => setPostcardImage(e.target.value)}></input>
+                        <label for="postcard1">One</label>
+                        <br />
+                        <img src={postcard1}></img>
+                        <br />
+                        <input type="radio" id="postcard2" name="postcardImage" value="2" onChange={(e) => setPostcardImage(e.target.value)}></input>
+                        <label for="postcard2">Two</label>
+                        <br />
+                        <img src={postcard2}></img>
+                        <br />
+                        <input type="radio" id="postcard3" name="postcardImage" value="3" onChange={(e) => setPostcardImage(e.target.value)}></input>
+                        <label for="postcard3">Three</label>
+                        <br />
+                        <img src={postcard3}></img>
+
                     </div>
 
                 </ColumnLeft>
@@ -187,7 +208,7 @@ const Buildpage = () => {
                                                 <label for="inputState" className="form-label">State</label>
                                                 <select id="inputState" className="form-select" onChange={(e) => setState(e.target.value)}>
                                                     <option selected>Choose...</option>
-                                                    <option>...</option>
+                                                    <option>Kentucky</option>
                                                 </select>
                                             </div>
                                             <div className="col-md-2">

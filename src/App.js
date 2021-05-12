@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -18,11 +18,13 @@ import SignIn from "./SignIn";
 
 
 function App() {
+
+  const [token, setToken] = useState("");
   return (
 
     <Router>
 
-      <Nav />
+      <Nav token={token} />
 
 
 
@@ -31,18 +33,18 @@ function App() {
       <Switch>
 
         <Route path='/register'>
-          <Auth
+          <Auth  setTkn={setToken}
             register
           />
         </Route>
         <Route path='/signin'>
-          <SignIn
+          <SignIn  setTkn={setToken}
             register
           />
         </Route>
 
         <Route path="/create">
-          <Buildpage />
+          <Buildpage token={token} />
         </Route>
         <Route path="/aboutUs">
           <AboutUs />

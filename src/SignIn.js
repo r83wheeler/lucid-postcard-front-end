@@ -8,6 +8,8 @@ export default function SignIn(props) {
         'password': '',
         'username': ''
     })
+    
+    const [token, setToken] = useState("");
     const history = useHistory()
 
     const handleChange = (e) => {
@@ -25,14 +27,16 @@ export default function SignIn(props) {
             console.log('not good enough, bud')
         } else {
             formData.client_id = 2;
-            formData.client_secret='2ZHEdyWF1BbcywHJAQlcsMTppQ8gdVZyIx6i2yVY';
+            formData.client_secret='EP9jhyKm3FGFCaveKzpsBnF9n1C1Yz0lYa256prl';
             formData.grant_type='password';
             formData.scope='';
             const apiURL = 'https://lucid_postcard-r83wheeler94967.codeanyapp.com/oauth/token'
             axios.post(apiURL, formData)
                 .then(response => {
+                    setToken(response.data.access_token)
+                    props.setTkn(response.data.access_token);
                     console.log(response)
-                    history.push('/home')
+                    history.push('/buildpage')
                     //save token
                     //user:story push to Dashboard
                 })
