@@ -23,11 +23,11 @@ const Container = styled.div`
 `;
 
 const ColumnLeft = styled.div`
-    display: flex;
+    ${'' /* display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    line-height: 1.4;
+    line-height: 1.4; */}
     padding: 1rem 2rem;
     order: ${(reverse) => (reverse ? '2' : '1')};
 
@@ -81,24 +81,28 @@ const Buildpage = () => {
     const handlePostcardSubmit = () => {
         //handle the submit
         //make an axios call 
+        let data = {
+            message:message,
+            postcardImage:image,
+            address1:address1,
+            address2:address2,
+            city:city,
+            state:state,
+            zip:zip
+        };
+        let headers = {
+            "Accept":"application/json",
+            "Access-Control-Allow-Origin":"*",
+            "Content-Type":"application/json; charset=utf-8",
+            "Authorization":`Bearer ${token}`
+        };
+        let method = "post";
+
         axios({
-            method:"post",
+            method,
             url:apiURL + route,
-            data:{
-                message:message,
-                postcardImage:image,
-                address1:address1,
-                address2:address2,
-                city:city,
-                state:state,
-                zip:zip
-            },
-            headers:{
-                "Accept":"application/json",
-                "Access-Control-Allow-Origin":"*",
-                "Content-Type":"multipart/form-data",
-                "Authorization":`Bearer ${token}`
-            }
+            data,
+            headers
         })
         .then(response => function (response){
             alert("You created a Post Card");
